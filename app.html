@@ -3,11 +3,17 @@
 	<head>
 		<title>Pose tracking rehabilitation support</title>
 		<link rel="stylesheet" type="text/css" href="app.css">
-		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-		<link rel="icon" href="/favicon.ico" type="image/x-icon">
+		<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+		<link rel="icon" href="favicon.ico" type="image/x-icon">
 </style>
 	</head>
 	<body>
+		<img id="start" src="./squat_start.png" width="100" height="100"></img>
+		<!--img id="test1" src="./squat_start.png" width="100" height="100"></img-->
+		<img id="test1" src="./test1.jpg" width="100" height="100"></img>
+		<img id="test2" src="./test2.png" width="100" height="100"></img>
+		<img id="test3" src="./test3.png" width="100" height="100"></img>
+		<img id="test4" src="./test4.png" width="100" height="100"></img>
 		<div class="container">
 			<video id="video" autoplay="true" width="500" height="500"></video>
 		</div>
@@ -16,6 +22,6 @@
 		<script src="https://unpkg.com/@tensorflow/tfjs"></script>
 		<!-- Load Posenet -->
 		<script src="https://unpkg.com/@tensorflow-models/posenet"></script>
-		<script src="./app.js" type="module"></script>
+		<script data-main="scripts/app" src="scripts/require.js"></script>
 	</body>
 </html>

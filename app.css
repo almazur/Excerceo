@@ -5,10 +5,10 @@
 	border: 10px #333 solid;
 	overflow:hidden;
 	position: fixed;
-    top: 50%;
-    left: 50%;
-    margin-top: -250px;
-    margin-left: -250px;
+	top: 50%;
+	left: 50%;
+	margin-top: -250px;
+	margin-left: -250px;
 }
 
 #video {
