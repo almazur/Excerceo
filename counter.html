@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pose tracking rehabilitation support</title>
+    <link rel="stylesheet" type="text/css" href="app.css">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+</head>
+<body>
+<img id="start" src="./test5.png" height="400"/>
+<h1><b><p id="start_label"></p>WAIT....</b></h1>
+<h1>Counter:<b><p id="counter">0</p></b></h1>
+<h1>Similarity:<b><p id="similarity">0</p></b></h1>
+<div class="container">
+    <video id="video" autoplay="true" width="500" height="500"></video>
+</div>
+
+<!-- Load TensorFlow.js -->
+<script src="https://unpkg.com/@tensorflow/tfjs"></script>
+<!-- Load Posenet -->
+<script src="https://unpkg.com/@tensorflow-models/posenet"></script>
+<script data-main="scripts/counter" src="scripts/require.js"></script>
+</body>
+</html>
