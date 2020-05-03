@@ -1,14 +1,36 @@
 
 require(['scripts/analysis3.js']);
 
+function CircularArray(maxLength) {
+  this.maxLength = maxLength;
+}
+
+CircularArray.prototype = Object.create(Array.prototype);
+
+CircularArray.prototype.push = function(element) {
+  Array.prototype.push.call(this, element);
+  while (this.length > this.maxLength) {
+    this.shift();
+  }
+}
+
 // setup video
-var video = document.querySelector("#video");
+var video = document.getElementById("video2");
 
 const videoWidth = 500;
 const videoHeight = 500;
 video.width = videoWidth;
 video.height = videoHeight;
 const similarity_threshold = 0.95;
+
+timeout = 5;
+
+const bufferLen = 10;
+const posesBuffer = new CircularArray(bufferLen);
+const posesRefBuffer = new CircularArray(bufferLen);
+const startRefBuffer = new CircularArray(bufferLen);
+
+var video1 = document.getElementById("video1");
 
 if (navigator.mediaDevices.getUserMedia) {
     var media_setup = {
@@ -32,20 +54,25 @@ if (navigator.mediaDevices.getUserMedia) {
 
 function process_pose(){
     posenet.load().then(async function(net) {
-        const pose_ref = await get_start_pose(net);
+        await init_start_pose(net, 0);
         document.getElementById('start_label').innerHTML = "START!";
-        await estimate_pose(net, pose_ref);
+        await estimate_pose(net);
     })
 }
 
-async function get_start_pose(net){
+async function init_start_pose(net, n){
     const scaleFactor = 0.50;
-    const flipHorizontal = false;
+    const flipHorizontal = true;
     const outputStride = 16;
-    const imageElement = document.getElementById('start');
-    const pose = await net.estimateSinglePose(imageElement, scaleFactor, flipHorizontal, outputStride);
 
-    return pose;
+    const pose = await net.estimateSinglePose(video1, scaleFactor, flipHorizontal, outputStride);
+    startRefBuffer.push(fit_to_bound_box(pose));
+
+    if (n<bufferLen) {
+        setTimeout(function () {
+            init_start_pose(net, n + 1);
+        }, timeout);
+    }
 }
 
 function increment_counter(){
@@ -59,21 +86,26 @@ function set_similarity(similarity){
     document.getElementById('similarity').innerHTML = similarity;
 }
 
-async function estimate_pose(net, pose_ref){
+async function estimate_pose(net){
     const scaleFactor = 0.50;
     const flipHorizontal = true;
     const outputStride = 16;
-    const videoElement = document.getElementById('video');
+    //const videoElement = document.getElementById('video');
 
-    const pose = await net.estimateSinglePose(videoElement, scaleFactor, flipHorizontal, outputStride);
-    //console.log(pose);
-    const similarity = cosinesim(pose_ref, pose);
-    set_similarity(similarity);
+    if (video1.readyState === 4) {
+        const pose = await net.estimateSinglePose(video, scaleFactor, flipHorizontal, outputStride);
+        //const poseRef = await net.estimateSinglePose(video1, scaleFactor, flipHorizontal, outputStride);
+        posesBuffer.push(fit_to_bound_box(pose));
+        //posesRefBuffer.push(poseRef);
 
-    if (similarity>similarity_threshold)
-        increment_counter();
+        const similarity = array_cosinesim(startRefBuffer, posesBuffer);
+        set_similarity(similarity);
+
+        if (similarity>similarity_threshold)
+            increment_counter();
+    }
 
     setTimeout(function(){
-        estimate_pose(net, pose_ref);
-    }, 50);
+        estimate_pose(net);
+    }, timeout);
 }
