@@ -3,6 +3,11 @@ function setCorrectness(correctness){
     document.getElementById('correctnessProgressbar').style.width = (correctness * 100).toFixed(0) + "%";
 }
 
+function setLastCorrectness(correctness){
+    document.getElementById('correctnessText2').innerHTML = (correctness * 100).toFixed(1) + "%";
+    document.getElementById('correctnessProgressbar2').style.width = (correctness * 100).toFixed(0) + "%";
+}
+
 let count = 0
 function incrementRepetitionsCount(){
     document.getElementById('repetitionsCount').innerHTML = ++count;

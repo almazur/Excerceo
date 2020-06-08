@@ -100,7 +100,7 @@
                         <source type="video/mp4" src="../video/pajacyk.mp4" />
                       </video>
                       <video id="testVideo1" width="400px" height="400px" preload muted playsinline style="display: none;">
-                        <source type="video/mp4" src="../video/pajacyk6.mp4" />
+                        <source type="video/mp4" src="../video/pajacyk20.mp4" />
                       </video>
                       <video id="testVideo2" width="400px" height="400px" preload muted playsinline style="display: none;" >
                         <source type="video/mp4" src="../video/przysiad4.mp4" />
@@ -137,7 +137,7 @@
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Correctness</div>
+                      <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Dynamic Correctness</div>
                       <div class="row no-gutters align-items-center">
                         <div class="col-auto">
                           <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800" >
@@ -158,8 +158,34 @@
                 </div>
               </div>
 
-              <!-- Card Example -->
+              <!-- Earnings (Monthly) Card Example -->
               <div class="card border-left-success shadow mb-4 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Last Correctness</div>
+                      <div class="row no-gutters align-items-center">
+                        <div class="col-auto">
+                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800" >
+                            <span id="correctnessText2">0%</span>
+                          </div>
+                        </div>
+                        <div class="col">
+                          <div class="progress progress-sm mr-2">
+                            <div class="progress-bar bg-success" role="progressbar" id = "correctnessProgressbar2" style="width: 0%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-check-circle fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Card Example -->
+              <div class="card border-left-warning shadow mb-4 py-2">
                 <div class="card-body">
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">

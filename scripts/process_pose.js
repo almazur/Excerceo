@@ -42,6 +42,7 @@ function processStartPose(keypoints, minPartConfidence, scale) {
 
 let gap = 0;
 let countDelay = 0;
+let lastCorrectness = 0.0;
 function processCameraPose(keypoints, minPartConfidence, scale) {
     posesBuffer.push(keypoints)
     let cos;
@@ -52,8 +53,14 @@ function processCameraPose(keypoints, minPartConfidence, scale) {
             if(countDelay >= countDelayMin && cos > threshold){
                 incrementRepetitionsCount();
                 countDelay = 0;
+                lastCorrectness = cos;
+                setLastCorrectness(lastCorrectness);
+            } else {
+                if (cos >lastCorrectness){
+                    lastCorrectness = cos;
+                    setLastCorrectness(lastCorrectness);
+                }
             }
-
 
             /*
             console.log(

@@ -91,8 +91,8 @@ async function loadVideo() {
 
 const guiState = {
   input: {
-    mobileNetArchitecture: isMobile() ? '0.50' : '1.01',
-    outputStride: 16,
+    mobileNetArchitecture: '0.50', //isMobile() ? '0.50' : '1.01',
+    outputStride: 32,
     imageScaleFactor: 0.5,
   },
   singlePoseDetection: {
