@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Exerceo</title>
+
+  <!-- Custom fonts for this template-->
+  <link href="../frontend/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+  <!-- Custom styles for this template-->
+  <link href="../frontend/css/sb-admin-2.min.css" rel="stylesheet">
+
+</head>
+
+<body id="page-top">
+
+  <!-- Page Wrapper -->
+  <div id="wrapper">
+
+    <!-- Sidebar -->
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+      <li class="nav-item">
+        <a class="nav-link" href="index.html">
+          <span></span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link " href="squats.html">
+          <span></span></a>
+      </li>
+
+      <!-- Sidebar - Brand -->
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+        <div class="sidebar-brand-icon rotate-n-15">
+          <i class="fas fa-trophy"></i>
+        </div>
+        <div class="sidebar-brand-text mx-3">Exerceo</div>
+      </a>
+
+
+      <!-- Divider -->
+      <hr class="sidebar-divider my-0">
+
+      <div class="sidebar-heading">
+        Exercises
+      </div>
+
+      <!-- Nav Item - Dashboard -->
+      <li class="nav-item">
+        <a class="nav-link" href="index.html">
+          <i class="fas fa-fw fa-medal"></i>
+          <span>Rompers</span></a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" href="index.html">
+          <i class="fas fa-fw fa-medal"></i>
+          <span>Squats</span></a>
+      </li>
+
+      <li class="nav-item active">
+        <a class="nav-link" href="slops.html">
+          <i class="fas fa-fw fa-medal"></i>
+          <span>Slops</span></a>
+      </li>
+
+      <hr class="sidebar-divider my-0">
+    </ul>
+    <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+      <!-- Main Content -->
+      <div id="content">
+
+        <!-- Topbar -->
+        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+        </nav>
+
+        <!-- Begin Page Content -->
+        <div class="container-fluid">
+
+          <!-- Content Row -->
+          <div class="row">
+
+            <div class="col-lg-7 mb-4">
+
+              <!-- Illustrations -->
+              <div class="card shadow mb-4">
+                <div class="card-body">
+                  <div class="text-center">
+                    <div id="loading">
+                      Loading the model...
+                    </div>
+                    <div id='main' style='display:none'>
+                      <video id="video" playsinline style="display: none;">
+                      </video>
+                      <canvas id="output" width="400px" height="400px"></canvas>
+                      <video id="referenceVideo" width="400px" height="400px" preload muted playsinline style="display: none;">
+                        <source type="video/mp4" src="../videoBase/sklon.mp4" />
+                      </video>
+                      <video id="testVideo1" width="400px" height="400px" preload muted playsinline style="display: none;">
+                        <source type="video/mp4" src="../videoTest/sklon2.mp4" />
+                      </video>
+                      <video id="testVideo2" width="400px" height="400px" preload muted playsinline style="display: none;">
+                        <source type="video/mp4" src="../videoTest/pajacyk6.mp4" />
+                      </video>
+                      <video id="testVideo3" width="400px" height="400px" preload muted playsinline style="display: none;" >
+                        <source type="video/mp4" src="../videoTest/przysiad4.mp4" />
+                      </video>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <div class="col-lg-5 mb-4">
+              <!-- Earnings (Monthly) Card Example -->
+              <div class="card border-left-primary shadow mb-4 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Repetitions count</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">
+                        <span id="repetitionsCount">0</span>
+                      </div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-history fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Earnings (Monthly) Card Example -->
+              <div class="card border-left-info shadow mb-4 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Correctness</div>
+                      <div class="row no-gutters align-items-center">
+                        <div class="col-auto">
+                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800" >
+                            <span id="correctnessText">0%</span>
+                          </div>
+                        </div>
+                        <div class="col">
+                          <div class="progress progress-sm mr-2">
+                            <div class="progress-bar bg-info" role="progressbar" id = "correctnessProgressbar" style="width: 0%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-check-circle fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+              <!-- Earnings (Monthly) Card Example -->
+              <div class="card border-left-success shadow mb-4 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Last Correctness</div>
+                      <div class="row no-gutters align-items-center">
+                        <div class="col-auto">
+                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800" >
+                            <span id="correctnessText2">0%</span>
+                          </div>
+                        </div>
+                        <div class="col">
+                          <div class="progress progress-sm mr-2">
+                            <div class="progress-bar bg-success" role="progressbar" id = "correctnessProgressbar2" style="width: 0%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-check-circle fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Card Example -->
+              <div class="card border-left-warning shadow mb-4 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Time spent</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">
+                        <span id="timeSpent">00:00:00</span>
+                      </div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-stopwatch fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /.container-fluid -->
+
+      </div>
+      <!-- End of Main Content -->
+
+      <!-- Footer -->
+      <footer class="sticky-footer bg-white">
+        <div class="container my-auto">
+          <div class="copyright text-center my-auto">
+            <span>Copyright &copy; Exerceo 2020</span>
+          </div>
+        </div>
+      </footer>
+      <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+  </div>
+  <!-- End of Page Wrapper -->
+
+  <!-- Scroll to Top Button-->
+  <a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+  </a>
+
+  <!-- Logout Modal-->
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+          <a class="btn btn-primary" href="../frontend/login.html">Logout</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap core JavaScript-->
+  <script src="../frontend/vendor/jquery/jquery.min.js"></script>
+  <script src="../frontend/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="../frontend/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="../frontend/js/sb-admin-2.min.js"></script>
+
+  <!-- Page level plugins -->
+  <script src="../frontend/vendor/chart.js/Chart.min.js"></script>
+
+  <!-- Page level custom scripts -->
+  <script src="../frontend/js/demo/chart-area-demo.js"></script>
+  <script src="../frontend/js/demo/chart-pie-demo.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/dat.gui@0.7.2/build/dat.gui.js"></script>
+  <script src="https://unpkg.com/@tensorflow/tfjs"></script>
+  <script src="https://unpkg.com/@tensorflow-models/posenet"></script>
+
+  <script src="https://unpkg.com/dynamic-time-warping@1.0.0"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
+  <script src="../scripts/demo_util.js"></script>
+  <script src="../scripts/stats.min.js "></script>
+  <script src="../scripts/camera.js"></script>
+  <script src="../scripts/process_pose.js"></script>
+  <script src="../scripts/analysis.js"></script>
+  <script src="../scripts/page.js"></script>
+</body>
+
+</html>
