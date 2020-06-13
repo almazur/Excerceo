@@ -1,4 +1,4 @@
-# pose-tracking-rehabilitation-support
+# Excerceo
 Medical rehabilitation support through visual tracking of body pose
 
 It's web application that recognizes, counts and evaluates the correctness of rehabilitation exercises on the basis of tracking the posture from an RGB camera.
